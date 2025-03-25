@@ -978,8 +978,8 @@ void telnet_refreshscreen() {
               telnetclient.printf("  OLED Main: %04.3f ms\r\n",(float)duration_oled/1000.0f);
               telnetclient.printf("  OLED1 Draw: %04.3f ms\r\n  OLED1 I2C:  %04.3f ms\r\n",(float)duration_oled1draw/1000.0f,(float)duration_oled1i2c/1000.0f);
               telnetclient.printf("  OLED2 Draw: %04.3f ms\r\n  OLED2 I2C:  %04.3f ms\r\n",(float)duration_oled2draw/1000.0f,(float)duration_oled2i2c/1000.0f);
-              telnetclient.printf("  Request Cycle Loop: %04d ms\r\n  Request last Index: %03d\r\n", duration_requestcycle,requestindex);
-              telnetclient.printf("  Time since last Packet: %05d ms\r\n",m365packetlasttimestamp);
+              telnetclient.printf("  Request Cycle Loop: %04lu ms\r\n  Request last Index: %03d\r\n", duration_requestcycle,requestindex);
+              telnetclient.printf("  Time since last Packet: %05lu ms\r\n",m365packetlasttimestamp);
      
               telnetclient.printf("\r\nPackets per device Address:\r\n");
               //for(i = 0; i < MAX_SRV_CLIENTS; i++){
@@ -1762,7 +1762,7 @@ void oled_switchscreens() {
   uint8_t oldscreen = oledstate;
   
   //Data/Bus Timeout
-    if ((m365packettimestamp+m365packettimeout)<millis() & oledstate!=oledtimeout) {
+    if (((m365packettimestamp+m365packettimeout)<millis()) & (oledstate!=oledtimeout)) {
       oledstate=oledtimeout;
       updatescreens=true;
       return;
@@ -1926,8 +1926,8 @@ void oled_switchscreens() {
                 display1.printf("max Speed: %04.1f\r\n",(float)speed_max/1000.0f);
                 display1.printf("min Current: %4.1fA\r\n",(float)current_min/1000.0f);
                 display1.printf("max Current:  %4.1fA\r\n",(float)current_max/1000.0f);
-                display1.printf("min Watt: %5d\r\n",watt_min);
-                display1.printf("max Watt: %5d\r\n",watt_max);
+                display1.printf("min Watt: %5li\r\n",watt_min);
+                display1.printf("max Watt: %5li\r\n",watt_max);
               break;
             case 2: //Temperatures - Frame temp 1 & 2, Batt Temp 1 & 2
                 display1.printf("TEMPERATURE     (%d/8)",stopsubscreen);
