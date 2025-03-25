@@ -1536,14 +1536,14 @@ void setup() {
     Serial.printf("Chip Model: %s\n", ESP.getChipModel());
     Serial.printf("Chip Revision: %d\n", ESP.getChipRevision());
     Serial.printf("Chip cores: %d\n", ESP.getChipCores());
-    Serial.printf("Core Version: %d\n", ESP.getCoreVersion());
+    Serial.printf("Core Version: %s\n", ESP.getCoreVersion());
     Serial.print("Chip Id: "); Serial.println(chipId);
-    Serial.printf("CPU Frequency: %u MHz\n", ESP.getCpuFreqMHz());
+    Serial.printf("CPU Frequency: %lu MHz\n", ESP.getCpuFreqMHz());
 
-    Serial.printf("Flash Size: %d\n", ESP.getFlashChipSize());
-    Serial.printf("Flash Speed: %d\n", ESP.getFlashChipSpeed());
+    Serial.printf("Flash Size: %lu\n", ESP.getFlashChipSize());
+    Serial.printf("Flash Speed: %lu\n", ESP.getFlashChipSpeed());
 
-    Serial.printf("PSRAM Size: %d\n", ESP.getPsramSize());
+    Serial.printf("PSRAM Size: %lu\n", ESP.getPsramSize());
     // char identifier[24];
 
     // snprintf(identifier, sizeof(identifier), "M365_DashBoard-%X", chipId);
