@@ -587,7 +587,9 @@ references used:
 
 //Misc
   #ifdef ESP32
-    #define led GPIO_NUM_2
+    // #define led GPIO_NUM_2
+    // waveshare_esp32_s3_zero
+    #define led WS_RGB
   #endif
   #ifdef ESP8266
     #define led 2
@@ -1518,16 +1520,16 @@ void handle_wlan() {
 
 
 void setup() {
-    const int ledPin = RGB_BUILTIN;  // the number of the LED pin
-    pinMode(ledPin, OUTPUT);
-    digitalWrite(ledPin, HIGH);
+    // const int ledPin = RGB_BUILTIN;  // the number of the LED pin
+    pinMode(led, OUTPUT);
+    digitalWrite(led, HIGH);
     delay(2000);
     Serial.begin(115200);
     
     Serial.println("\n\n\n\n");
     Serial.println("********************************************************************");
     Serial.println("Hello from esp32-vindriktning");
-    digitalWrite(ledPin, LOW);
+    digitalWrite(led, LOW);
     uint32_t chipId = 0;
     for (int i = 0; i < 17; i = i + 8) {
       chipId |= ((ESP.getEfuseMac() >> (40 - i)) & 0xff) << i;
@@ -1581,10 +1583,13 @@ void setup() {
     if (nDevices == 0) {
       Serial.println("No I2C devices found");
     }
+    Serial.println("I2C scan completed.");
 #ifdef useoled1
+  //Adafruit_SSD1306 display1(128,64, &Wire, oled_reset);
   //Wire1.begin( oled_sda, oled_scl);
   //display1.begin(SSD1306_SWITCHCAPVCC, oled1_address, oled_sda, oled_scl, false);
   //display1.begin(SSD1306_SWITCHCAPVCC, oled1_address, oled_sda, oled_scl, false);
+  display1.begin(SSD1306_SWITCHCAPVCC, oled1_address,true,true);
   display1.dim(true);
   display1.setTextSize(1);
   display1.setTextColor(WHITE);
