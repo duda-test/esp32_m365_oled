@@ -1,7 +1,7 @@
 /*
 references used:
-  russion atmega328p/oled version: https://github.com/fogbox/m365_display/blob/master/extend_speedometer/defines.h & https://electro.club/forum/elektrosamokatyi_xiaomi/displey_dlya_syaokata&page=8
-  CamiAlfa BLE Protocoll: https://github.com/CamiAlfa/M365-BLE-PROTOCOL/blob/master/m365_register_map.h
+  russian atmega328p/oled version: https://github.com/fogbox/m365_display/blob/master/extend_speedometer/defines.h & https://electro.club/forum/elektrosamokatyi_xiaomi/displey_dlya_syaokata&page=8
+  CamiAlfa BLE Protocol: https://github.com/CamiAlfa/M365-BLE-PROTOCOL/blob/master/m365_register_map.h
   Paco Gorina NinebotMetrics: http://www.gorina.es/9BMetrics/
 */
 
@@ -51,7 +51,7 @@ references used:
   #define useoled1 //comment out to disable oled functionality
   //#define useoled2
   //#define usewlanclientmode //NOT IMPLEMENTED comment out to disable Wifi Client functionality
-  //#define usewlanapmode //NOT IMPLEMENTED  comment out to disable Wifi Access Poiint functionality
+  //#define usewlanapmode //NOT IMPLEMENTED  comment out to disable Wifi Access Point functionality
   #define usetelnetserver //comment out to disable telnet status/telemetrie server, this also disables RAW Server (so only mqtt might be left for leaving wifi activated)
   //#define userawserver //comment out to disable RAW Serial Data BUS Stream on Port 36524, NOT VERIFIED against wired-data-stream
   #define usepacketserver //comment out to disable PACKET Decode on Port 36525
@@ -775,7 +775,7 @@ void m365_handlepacket() {
  }
 } //m365_handlepacket
   
-void m365_receiver() { //recieves data until packet is complete
+void m365_receiver() { //receives data until packet is complete
   uint8_t newbyte;
   if (M365Serial.available()) {
     newbyte = M365Serial.read();
@@ -1444,7 +1444,7 @@ void handle_wlan() {
           display1.display();
 #endif          
           if (apnumclientsconnected==0) {
-              //no one connnected, but there was someone connected.... restart timeout
+              //no one connected, but there was someone connected.... restart timeout
               wlanconnecttimestamp = millis()+wlanapconnecttimeout;
           } //if (apnumclientsconnected==0) 
         } //if (apnumclientsconnected!=apnumclientsconnectedlast)
@@ -1793,7 +1793,7 @@ void oled_switchscreens() {
     }
 
   //switch between driving/stop screens:
-    //maybe add a speed treshold like 0.3km/h to keep showing "stop" screen
+    //maybe add a speed threshold like 0.3km/h to keep showing "stop" screen
     //if (newdata & (oledstate==oleddrive) & (escparsed->speed==0)) {
     if (newdata & (oledstate==oleddrive) & (abs((float)escparsed->speed/1000.0f)<0.5f)) {
     //if (newdata & ((x1parsed->mode==0)|(x1parsed->mode==2))) {
