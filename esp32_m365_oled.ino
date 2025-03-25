@@ -78,8 +78,8 @@ references used:
     #ifdef ESP32
       //#define oled_scl GPIO_NUM_4 //working wemos fake board
       //#define oled_sda GPIO_NUM_16 //working wemos fake board
-      #define oled_scl SCL //working wemos fake board
-      #define oled_sda SDA //working wemos fake board
+      #define oled_scl 9 //working wemos fake board
+      #define oled_sda 8 //working wemos fake board
     //#define sclpin GPIO_NUM_15 //working ttgo board
     //#define sdapin GPIO_NUM_4  //working ttgo board
     //#define sclpin GPIO_NUM_4 //working ttgo board
@@ -881,7 +881,7 @@ void m365_receiver() { //receives data until packet is complete
         if (sbuf[i_address]==0x20 && sbuf[i_hz]==0x65 && sbuf[i_offset]==0x00 ) {
           //senddata = true;
           m365_handlerequests();
-          DebugSerial.printf("---REQUEST-- %d\r\n",millis());
+          DebugSerial.printf("---REQUEST-- %lu\r\n",millis());
         }
         break;
     } //switch
