@@ -35,7 +35,7 @@ jobs:
     strategy:
       matrix:
         fqbn: 
-        - esp32:esp32:esp32s3
+        - esp32:esp32:waveshare_esp32_s3_zero
     steps:
     - uses: actions/checkout@v4
     - uses: arduino/compile-sketches@v1

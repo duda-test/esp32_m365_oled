@@ -620,9 +620,9 @@ references used:
   unsigned long duration_telnet=0;
   unsigned long timestamp_telnetstart=0;
 
-
-  #define _max(a,b) ((a)>(b)?(a):(b))
-  #define _min(a,b) ((a)<(b)?(a):(b))
+  // Already defined in Arduino.h
+  //#define _max(a,b) ((a)>(b)?(a):(b))
+  //#define _min(a,b) ((a)<(b)?(a):(b))
 
 void reset_statistics() {
   packets_rec=0;
